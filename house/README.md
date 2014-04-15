@@ -18,19 +18,10 @@ This means that they will not spew error messages at you, even if they're
 not passing. To get a test to run and show you the error message, delete
 the `skip`.
 
-To run a single test, use the name of the test:
+To run a single test, use the name of the test. For example:
 
 ```plain
 $ ruby test/house_test.rb --name test_verse_1
-```
-
-### Optional: Acceptance Test
-
-Another failing test suite is provided in `./features/house.feature`.
-It can be run with the following command:
-
-```plain
-$ cucumber features/house.feature
 ```
 
 ### Lyrics
