@@ -3,7 +3,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/house'
 
-class HouseTest < MiniTest::Unit::TestCase
+class HouseTest < Minitest::Test
   attr_reader :tale
   def setup
     @tale = House.new
