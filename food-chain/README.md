@@ -12,20 +12,10 @@ It can be run with the following command:
 $ ruby test/food_chain_test.rb
 ```
 
-To run a single test, use the name of the test:
+To run a single test, use the name of the test, for example:
 
 ```plain
 $ ruby test/food_chain_test.rb --name test_fly
-```
-
-### Optional: Acceptance Test
-
-Another failing test suite is provided in
-`./features/food-chain.feature`.
-It can be run with the following command:
-
-```plain
-$ cucumber features/food-chain.feature
 ```
 
 ### Lyrics
