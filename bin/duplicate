@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+if ARGV.length != 2
+  puts "Usage: bin/duplicate <REMOTE_NAME> <GITHUB_REPOSITORY_URL>"
+  puts "  e.g. bin/duplicate durham-2014-march git@github.com:torqueforge/durham-2014-march.git"
+  exit 1
+end
+
+url = ARGV.pop
+name = ARGV.pop
+
+`git remote add #{name} #{url}`
+`git push #{name} master:master`
+`git push #{name} unicorn:unicorn`
+`git push #{name} house:house`
+`git push #{name} bottles:bottles`
+`git push #{name} checkerboard:checkerboard`
+`git push #{name} food-chain:food-chain`
+`git push #{name} twelve-days:twelve-days`
+`git push --tags #{name}`
