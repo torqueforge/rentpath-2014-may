@@ -1,7 +1,6 @@
 # http://en.wikipedia.org/wiki/There_Was_an_Old_Lady_Who_Swallowed_a_Fly
 gem 'minitest', '~> 5.2'
 require 'minitest/autorun'
-require 'minitest/pride'
 require './lib/food_chain'
 
 class FoodChainTest < Minitest::Test
