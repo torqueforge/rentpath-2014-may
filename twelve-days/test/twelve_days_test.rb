@@ -1,7 +1,6 @@
 # See http://en.wikipedia.org/wiki/Cumulative_song
 gem 'minitest', '~> 5.2'
 require 'minitest/autorun'
-require 'minitest/pride'
 require_relative 'twelve_days'
 
 class TwelveDaysTest < Minitest::Test
