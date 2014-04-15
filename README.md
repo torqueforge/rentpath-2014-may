@@ -1,5 +1,12 @@
 # Object-Oriented Design Class
 
+## Dependencies
+
+You will need:
+
+* git ([windows](http://msysgit.github.com/), [mac os x: using brew](http://brew.sh/), linux: probably apt-get or yum git-core)
+* a modern version of Ruby (1.9.3 or greater)
+
 ## Setup
 
 Clone this repository:
@@ -19,6 +26,24 @@ Install the dependencies:
 ```bash
 $ gem install bundler # if you don't have it
 $ bundle install
+```
+
+## Sanity Check Setup
+
+To verify that everything is set up so that we can get off to a flying start, run the following command:
+
+```bash
+$ ruby sanity_test.rb
+```
+
+You should get an error complaining that **cannot load such file -- sanity (LoadError)**.
+
+For example:
+
+```bash
+/Users/you/.rubies/ruby-2.1.1/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require': cannot load such file -- sanity (LoadError)
+  from /Users/you/.rubies/ruby-2.1.1/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  from sanity_test.rb:3:in `<main>'
 ```
 
 ## Exercises
