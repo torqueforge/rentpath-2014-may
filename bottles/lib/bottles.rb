@@ -8,14 +8,14 @@ class Bottles
   end
 
   def verse(num)
-    Verse.new(num).to_s
+    Verse.new(VerseVariant.new(num)).to_s
   end
 end
 
 class Verse
-  attr_reader :num
-  def initialize(num)
-    @num = num
+  attr_reader :variant
+  def initialize(variant)
+    @variant = variant
   end
 
   def to_s
@@ -26,6 +26,38 @@ class Verse
   end
 
   private
+
+  def what_to_do
+    variant.what_to_do
+  end
+
+  def how_many
+    variant.how_many
+  end
+
+  def next_how_many
+    variant.next_how_many
+  end
+
+  def pronoun
+    variant.pronoun
+  end
+
+  def containers
+    variant.containers
+  end
+
+  def next_containers
+    variant.next_containers
+  end
+end
+
+class VerseVariant
+  attr_reader :num
+
+  def initialize(num)
+    @num = num
+  end
 
   def what_to_do
     if num.zero?
