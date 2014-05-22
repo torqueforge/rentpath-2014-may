@@ -8,7 +8,20 @@ class Bottles
   end
 
   def verse(num)
-    Verse.new(VerseVariant.new(num)).to_s
+    Verse.new(variant_for(num)).to_s
+  end
+
+  def variant_for(num)
+    case num
+    when 0
+      VerseVariant0.new(num)
+    when 1
+      VerseVariant1.new(num)
+    when 2
+      VerseVariant2.new(num)
+    else
+      VerseVariant.new(num)
+    end
   end
 end
 
@@ -60,52 +73,60 @@ class VerseVariant
   end
 
   def what_to_do
-    if num.zero?
-      "Go to the store and buy some more"
-    else
-      "Take #{pronoun} down and pass it around"
-    end
+    "Take #{pronoun} down and pass it around"
   end
 
   def how_many
-    if num == 0
-      'no more'
-    else
-      "#{num}"
-    end
+    "#{num}"
   end
 
   def next_how_many
-    if num == 1
-      'no more'
-    elsif num == 0
-      "99"
-    else
-      "#{num - 1}"
-    end
+    "#{num - 1}"
   end
 
   def pronoun
-    if num == 1
-      'it'
-    else
-      'one'
-    end
+    'one'
   end
 
   def containers
-    if num == 1
-      'bottle'
-    else
-      'bottles'
-    end
+    'bottles'
   end
 
   def next_containers
-    if num == 2
-      'bottle'
-    else
-      'bottles'
-    end
+    'bottles'
+  end
+end
+
+class VerseVariant0 < VerseVariant
+  def what_to_do
+    "Go to the store and buy some more"
+  end
+
+  def how_many
+    'no more'
+  end
+
+  def next_how_many
+    "99"
+  end
+end
+
+class VerseVariant1 < VerseVariant
+  def containers
+    'bottle'
+  end
+
+  def pronoun
+    'it'
+  end
+
+  def next_how_many
+    'no more'
+  end
+end
+
+class VerseVariant2 < VerseVariant
+  def next_containers
+    'bottle'
   end
 end
