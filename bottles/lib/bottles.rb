@@ -8,15 +8,44 @@ class Bottles
   end
 
   def verse(num)
-    case num
-    when 0
-      "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n"
-    when 1
-      "1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n"
-    when 2
-      "2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n"
+    "#{how_many(num)} #{containers(num)} of beer on the wall, ".capitalize +
+    "#{how_many(num)} #{containers(num)} of beer.\n" +
+    "#{what_to_do(num)}, " +
+    "#{how_many(num-1)} #{containers(num-1)} of beer on the wall.\n"
+  end
+
+  private
+  def what_to_do(num)
+    if num.zero?
+      "Go to the store and buy some more"
     else
-      "#{num} bottles of beer on the wall, #{num} bottles of beer.\nTake one down and pass it around, #{num-1} bottles of beer on the wall.\n"
+      "Take #{pronoun(num)} down and pass it around"
+    end
+  end
+
+  def how_many(num)
+    if num.zero?
+      'no more'
+    elsif num < 0
+      "99"
+    else
+      "#{num}"
+    end
+  end
+
+  def pronoun(num)
+    if num == 1
+      'it'
+    else
+      'one'
+    end
+  end
+
+  def containers(num)
+    if num == 1
+      'bottle'
+    else
+      'bottles'
     end
   end
 end
