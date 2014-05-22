@@ -8,32 +8,52 @@ class Bottles
   end
 
   def verse(num)
-    "#{how_many(num)} #{containers(num)} of beer on the wall, ".capitalize +
-    "#{how_many(num)} #{containers(num)} of beer.\n" +
-    "#{what_to_do(num)}, " +
-    "#{how_many(num-1)} #{containers(num-1)} of beer on the wall.\n"
+    Verse.new(num).to_s
+  end
+end
+
+class Verse
+  attr_reader :num
+  def initialize(num)
+    @num = num
+  end
+
+  def to_s
+    "#{how_many} #{containers} of beer on the wall, ".capitalize +
+    "#{how_many} #{containers} of beer.\n" +
+    "#{what_to_do}, " +
+    "#{next_how_many} #{next_containers} of beer on the wall.\n"
   end
 
   private
-  def what_to_do(num)
+
+  def what_to_do
     if num.zero?
       "Go to the store and buy some more"
     else
-      "Take #{pronoun(num)} down and pass it around"
+      "Take #{pronoun} down and pass it around"
     end
   end
 
-  def how_many(num)
-    if num.zero?
+  def how_many
+    if num == 0
       'no more'
-    elsif num < 0
-      "99"
     else
       "#{num}"
     end
   end
 
-  def pronoun(num)
+  def next_how_many
+    if num == 1
+      'no more'
+    elsif num == 0
+      "99"
+    else
+      "#{num - 1}"
+    end
+  end
+
+  def pronoun
     if num == 1
       'it'
     else
@@ -41,8 +61,16 @@ class Bottles
     end
   end
 
-  def containers(num)
+  def containers
     if num == 1
+      'bottle'
+    else
+      'bottles'
+    end
+  end
+
+  def next_containers
+    if num == 2
       'bottle'
     else
       'bottles'
