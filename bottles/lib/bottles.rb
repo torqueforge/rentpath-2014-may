@@ -3,49 +3,84 @@ class Bottles
     verses(99, 0)
   end
 
-  def verses(start, the_end)
-    start.downto(the_end).map {|i| verse(i)}.join("\n")
+  def verses(upper_bound, lower_bound)
+    upper_bound.downto(lower_bound).map {|i| verse(i)}.join("\n")
   end
 
-  def verse(bottle_number)
-    "#{how_many(bottle_number)} #{containers(bottle_number)} of beer on the wall, ".capitalize +
-    "#{how_many(bottle_number)} #{containers(bottle_number)} of beer.\n" +
-    "#{what_to_do(bottle_number)}, " +
-    "#{how_many(bottle_number-1)} #{containers(bottle_number-1)} of beer on the wall.\n"
+  def verse(number)
+    bottle_number = number.to_bottle_number
+    "#{bottle_number} of beer on the wall, ".capitalize +
+    "#{bottle_number} of beer.\n" +
+    "#{bottle_number.action}, " +
+    "#{bottle_number.next} of beer on the wall.\n"
+  end
+end
+
+class Fixnum
+  def to_bottle_number
+    if Object.const_defined?("BottleNumber#{self}")
+      Object.const_get("BottleNumber#{self}")
+    else
+      BottleNumber
+    end.new(self)
+  end
+end
+
+class BottleNumber
+  attr_reader :number
+  def initialize(number)
+    @number = number
+  end
+
+  def to_s
+    "#{name} #{container}"
+  end
+
+  def name
+    number.to_s
+  end
+
+  def container
+    'bottles'
+  end
+
+  def action
+    "Take #{pronoun} down and pass it around"
+  end
+
+  def next
+    (number - 1).to_bottle_number
   end
 
   private
-  def what_to_do(bottle_number)
-    if bottle_number.zero?
-      "Go to the store and buy some more"
-    else
-      "Take #{pronoun(bottle_number)} down and pass it around"
-    end
+
+  def pronoun
+    'one'
+  end
+end
+
+class BottleNumber1 < BottleNumber
+  def container
+    'bottle'
   end
 
-  def how_many(bottle_number)
-    if bottle_number.zero?
-      'no more'
-    elsif bottle_number < 0
-      "99"
-    else
-      "#{bottle_number}"
-    end
+  private
+
+  def pronoun
+    'it'
+  end
+end
+
+class BottleNumber0 < BottleNumber
+  def name
+    'no more'
   end
 
-  def pronoun(bottle_number)
-    if bottle_number == 1
-      'it'
-    else
-      'one'
-    end
+  def action
+    "Go to the store and buy some more"
   end
 
-  def containers(bottle_number)
-    if bottle_number == 1
-      'bottle'
-    else
-      'bottles'
-    end
+  def next
+    99.to_bottle_number
   end
 end
