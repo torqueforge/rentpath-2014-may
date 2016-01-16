@@ -1,10 +1,16 @@
 class House
+  attr_reader :line_start
+
+  def initialize(line_start="This is")
+    @line_start = line_start
+  end
+
   def recite
     (1..pieces.length).map {|i| line(i)}.join("\n")
   end
 
   def line(number)
-    "This is %s.\n" % pieces.last(number).join(' ')
+    "#{line_start} %s.\n" % pieces.last(number).join(' ')
   end
 
   private
